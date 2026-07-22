@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Metisova — The Invention & Intelligence Company</title>
+<meta name="description" content="Metisova identifies the world's unsolved problems, invents original solutions, and commercializes them across software, AI, bioscience, and global presence." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#05070d;
+    --void-2:#0a0f1c;
+    --panel: rgba(16,23,36,0.62);
+    --panel-solid:#0d1420;
+    --panel-hi: rgba(22,30,46,0.75);
+    --border: rgba(255,255,255,0.08);
+    --border-glow: rgba(110,235,255,0.28);
+    --cyan:#5eeaff;
+    --cyan-dim: rgba(94,234,255,0.14);
+    --indigo:#8b93ff;
+    --gold:#f4b860;
+    --emerald:#37e0a4;
+    --violet:#b57cff;
+    --ice:#f3f8fc;
+    --mist:#93a4b8;
+    --mist-dim:#5b6b7f;
+    --radius:22px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:
+      radial-gradient(ellipse 60% 40% at 50% -10%, rgba(139,147,255,0.13), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 90% 20%, rgba(94,234,255,0.08), transparent 60%),
+      var(--void);
+    color:var(--ice);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--cyan); color:var(--void); }
+  a{ color:inherit; text-decoration:none; }
+  img,svg{ display:block; max-width:100%; }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.14em; text-transform:uppercase;
+    font-size:0.72rem; color:var(--cyan);
+  }
+  h1,h2,h3{ font-family:'Unbounded', sans-serif; line-height:1.08; letter-spacing:-0.01em; }
+
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:3;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+
+  /* ---------------- nav ---------------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    backdrop-filter:blur(16px);
+    background:linear-gradient(to bottom, rgba(5,7,13,0.88), rgba(5,7,13,0.35));
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; max-width:1200px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Unbounded', sans-serif; font-weight:700; font-size:1.02rem;
+    display:flex; align-items:center; gap:11px;
+  }
+  .logo .mark{
+    width:30px; height:30px; border-radius:9px; flex-shrink:0;
+    background:linear-gradient(135deg, var(--cyan), var(--indigo));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Unbounded', sans-serif; font-weight:800; font-size:0.9rem; color:#04070c;
+    box-shadow:0 0 22px rgba(94,234,255,0.35);
+  }
+  .navlinks{ display:flex; gap:32px; }
+  .navlinks a{ font-size:0.85rem; color:var(--mist); font-weight:500; transition:color .2s; }
+  .navlinks a:hover{ color:var(--ice); }
+  .nav-cta{
+    font-size:0.8rem; font-weight:700; padding:10px 20px; border-radius:100px;
+    background:linear-gradient(135deg, var(--cyan), var(--indigo)); color:#04070c;
+    box-shadow:0 0 22px rgba(94,234,255,0.25);
+    transition:transform .25s ease, box-shadow .25s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{ transform:translateY(-2px); box-shadow:0 0 32px rgba(94,234,255,0.45); }
+  @media(max-width:820px){ .navlinks{ display:none; } }
+
+  /* ---------------- hero ---------------- */
+  .hero{ position:relative; min-height:100vh; display:flex; align-items:center; padding-top:110px; overflow:hidden; }
+  #constellation{ position:absolute; inset:0; z-index:0; opacity:0.95; }
+  .hero::after{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse 60% 55% at 50% 38%, transparent 0%, var(--void) 90%);
+    pointer-events:none;
+  }
+  .hero-inner{ position:relative; z-index:1; width:100%; text-align:center; padding:20px 32px 0; }
+
+  .badge{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:8px 18px; border-radius:100px;
+    background:var(--cyan-dim); border:1px solid rgba(94,234,255,0.28);
+    font-size:0.74rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--cyan);
+    margin-bottom:30px;
+  }
+  .badge .dot{
+    width:6px; height:6px; border-radius:50%; background:var(--cyan);
+    box-shadow:0 0 8px var(--cyan); animation:pulse 2s infinite;
+  }
+  @keyframes pulse{ 0%,100%{ opacity:.4; transform:scale(.85);} 50%{ opacity:1; transform:scale(1.15);} }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.2rem); font-weight:800; color:var(--ice);
+  }
+  .hero h1 .grad{
+    background:linear-gradient(120deg, var(--cyan), var(--indigo) 55%, var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.sub{
+    max-width:680px; margin:28px auto 0; font-size:clamp(1.02rem, 2vw, 1.22rem);
+    color:var(--mist); line-height:1.7;
+  }
+  .hero-ctas{ display:flex; gap:16px; justify-content:center; margin-top:40px; flex-wrap:wrap; }
+  .btn-primary,.btn-ghost{
+    padding:14px 28px; border-radius:100px; font-size:0.92rem; font-weight:700;
+    display:inline-flex; align-items:center; gap:8px; transition:all .25s ease;
+  }
+  .btn-primary{ background:linear-gradient(135deg, var(--cyan), var(--indigo)); color:#04070c; box-shadow:0 0 26px rgba(94,234,255,0.28); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 34px rgba(94,234,255,0.4); }
+  .btn-ghost{ border:1px solid var(--border-glow); color:var(--ice); background:rgba(255,255,255,0.03); }
+  .btn-ghost:hover{ background:rgba(94,234,255,0.08); transform:translateY(-2px); }
+
+  /* metrics bar */
+  .metrics{
+    margin:64px auto 0; max-width:920px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--border);
+    border:1px solid var(--border); border-radius:20px; overflow:hidden;
+    backdrop-filter:blur(20px);
+  }
+  .metric{ background:var(--panel); padding:26px 18px; text-align:center; }
+  .metric .val{
+    font-family:'Unbounded', sans-serif; font-weight:700; font-size:clamp(1.3rem,3vw,1.9rem);
+    background:linear-gradient(135deg, #fff, var(--cyan));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .metric .lbl{ margin-top:6px; font-size:0.7rem; color:var(--mist-dim); text-transform:uppercase; letter-spacing:0.07em; }
+  @media(max-width:700px){ .metrics{ grid-template-columns:1fr 1fr; } }
+
+  .scroll-cue{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:10px; color:var(--mist-dim); z-index:1;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(var(--cyan), transparent); animation:dripline 2.4s ease-in-out infinite; }
+  @keyframes dripline{ 0%{opacity:.2;} 50%{opacity:1;} 100%{opacity:.2;} }
+
+  /* ---------------- section shell ---------------- */
+  section{ position:relative; padding:150px 0; }
+  .section-head{ max-width:680px; margin:0 auto 66px; text-align:center; }
+  .section-head.left{ text-align:left; margin:0 0 66px; }
+  .section-head .mono{ display:inline-block; margin-bottom:18px; }
+  .section-head h2{ font-size:clamp(2rem, 4vw, 3rem); font-weight:600; color:var(--ice); }
+  .section-head p{ margin:20px auto 0; color:var(--mist); font-size:1.05rem; line-height:1.7; max-width:560px; }
+  .section-head.left p{ margin:20px 0 0; }
+
+  .divider{ height:1px; width:100%; background:linear-gradient(90deg, transparent, var(--border-glow), transparent); }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------------- origin ---------------- */
+  .origin-grid{ display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
+  @media(max-width:900px){ .origin-grid{ grid-template-columns:1fr; gap:50px; } }
+  .origin-copy p{ color:var(--mist); font-size:1.04rem; line-height:1.85; margin-bottom:20px; }
+  .origin-copy strong{ color:var(--ice); font-weight:600; }
+  .origin-copy .drop{ font-family:'Unbounded', sans-serif; font-size:1.35rem; color:var(--ice); font-weight:600; margin-bottom:24px; }
+  .glyph-wrap{ position:relative; display:flex; align-items:center; justify-content:center; aspect-ratio:1/1; }
+  .glyph-wrap svg{ width:100%; height:100%; max-width:400px; }
+
+  /* ---------------- ethos cards ---------------- */
+  .ethos-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media(max-width:860px){ .ethos-grid{ grid-template-columns:1fr; } }
+  .ethos-card{
+    background:var(--panel); border:1px solid var(--border); border-radius:20px; padding:36px;
+    position:relative; overflow:hidden; transition:all .4s cubic-bezier(.16,1,.3,1);
+  }
+  .ethos-card::before{
+    content:''; position:absolute; top:0; left:0; width:100%; height:2px;
+    background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity:0; transition:opacity .4s ease;
+  }
+  .ethos-card:hover{ transform:translateY(-6px); border-color:var(--border-glow); background:var(--panel-hi); }
+  .ethos-card:hover::before{ opacity:1; }
+  .ethos-icon{
+    width:48px; height:48px; border-radius:13px; background:var(--cyan-dim);
+    border:1px solid rgba(94,234,255,0.25); display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem; margin-bottom:22px;
+  }
+  .ethos-card h3{ font-size:1.2rem; font-weight:600; margin-bottom:10px; }
+  .ethos-card p{ color:var(--mist); font-size:0.94rem; line-height:1.65; }
+
+  /* ---------------- cycle ---------------- */
+  .cycle-shell{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center; }
+  @media(max-width:900px){ .cycle-shell{ grid-template-columns:1fr; gap:50px; } }
+  .orbit-svg{ width:100%; max-width:440px; margin:0 auto; display:block; }
+  .cycle-list{ display:flex; flex-direction:column; gap:32px; }
+  .cycle-item{ display:flex; gap:20px; }
+  .cycle-item .dot{ width:10px; height:10px; border-radius:50%; margin-top:8px; flex-shrink:0; }
+  .cycle-item h3{ font-size:1.2rem; font-weight:600; margin-bottom:8px; }
+  .cycle-item p{ color:var(--mist); font-size:0.96rem; line-height:1.65; }
+
+  /* ---------------- divisions (showcase cards) ---------------- */
+  .division-card{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+    background:var(--panel); border:1px solid var(--border); border-radius:28px;
+    padding:52px; margin-bottom:28px; backdrop-filter:blur(20px);
+    transition:border-color .3s ease;
+  }
+  .division-card:hover{ border-color:var(--border-glow); }
+  .division-card.flip{ grid-template-columns:1fr 1fr; }
+  .division-card.flip .dc-copy{ order:2; }
+  .division-card.flip .dc-show{ order:1; }
+  @media(max-width:920px){
+    .division-card{ grid-template-columns:1fr; padding:34px 26px; gap:36px; }
+    .division-card.flip .dc-copy, .division-card.flip .dc-show{ order:initial; }
+  }
+
+  .tag{
+    display:inline-block; font-size:0.7rem; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.1em; margin-bottom:16px; padding:5px 13px; border-radius:8px;
+  }
+  .tag.labs{ background:rgba(139,147,255,0.14); color:var(--indigo); border:1px solid rgba(139,147,255,0.3); }
+  .tag.ai{ background:rgba(244,184,96,0.14); color:var(--gold); border:1px solid rgba(244,184,96,0.3); }
+  .tag.bio{ background:rgba(55,224,164,0.14); color:var(--emerald); border:1px solid rgba(55,224,164,0.3); }
+  .tag.atlas{ background:rgba(181,124,255,0.14); color:var(--violet); border:1px solid rgba(181,124,255,0.3); }
+
+  .status-pill{
+    float:right; font-family:'IBM Plex Mono', monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase;
+    padding:5px 11px; border-radius:100px; border:1px solid var(--border); color:var(--mist-dim);
+  }
+
+  .dc-copy h3{ font-size:1.7rem; font-weight:600; margin-bottom:14px; color:var(--ice); }
+  .dc-copy p.desc{ color:var(--mist); font-size:0.98rem; line-height:1.7; margin-bottom:22px; }
+  .feat-list{ list-style:none; display:flex; flex-direction:column; gap:13px; }
+  .feat-list li{ display:flex; align-items:flex-start; gap:11px; font-size:0.9rem; color:var(--ice); line-height:1.55; }
+  .feat-list li b{ font-weight:600; }
+  .feat-list .ico{ color:var(--cyan); font-weight:700; margin-top:1px; flex-shrink:0; }
+
+  /* showcase box (fake terminal) */
+  .showcase{
+    background:rgba(4,6,11,0.85); border:1px solid var(--border); border-radius:18px;
+    padding:22px; box-shadow:inset 0 0 40px rgba(0,0,0,0.6);
+  }
+  .showcase-head{
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;
+    padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .win-dots{ display:flex; gap:6px; }
+  .win-dots span{ width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.15); }
+  .showcase-title{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--mist-dim); }
+
+  /* labs waveform mockup */
+  .wave-row{ display:flex; align-items:center; gap:2px; height:56px; margin-bottom:16px; }
+  .wave-row span{ flex:1; background:linear-gradient(180deg, var(--indigo), var(--cyan)); border-radius:3px; opacity:0.85; }
+  .latency-readout{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--mist); line-height:1.9; }
+  .latency-readout b{ color:var(--cyan); }
+
+  /* AI terminal mockup */
+  .term{ font-family:'IBM Plex Mono', monospace; font-size:0.8rem; color:var(--gold); line-height:2; }
+  .term .line-mist{ color:var(--mist); }
+
+  /* bio number mockup */
+  .bio-number{ text-align:center; padding:14px 0; }
+  .bio-number .big{ font-family:'Unbounded', sans-serif; font-size:2.6rem; font-weight:800; color:var(--emerald); }
+  .bio-number .cap{ font-size:0.7rem; color:var(--mist-dim); text-transform:uppercase; letter-spacing:0.1em; margin-top:6px; }
+  .bio-bar-track{ height:6px; border-radius:6px; background:rgba(255,255,255,0.07); margin-top:20px; overflow:hidden; }
+  .bio-bar-fill{ height:100%; width:2%; border-radius:6px; background:linear-gradient(90deg, var(--emerald), var(--cyan)); }
+  .bio-caption{ display:flex; justify-content:space-between; font-size:0.68rem; color:var(--mist-dim); margin-top:8px; font-family:'IBM Plex Mono', monospace; }
+
+  /* atlas map mockup */
+  .map-demo{
+    position:relative; height:230px; border-radius:14px; overflow:hidden;
+    background:radial-gradient(circle at 62% 38%, #14203a 0%, #070b13 100%);
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .map-demo .grid-h, .map-demo .grid-v{ position:absolute; background:rgba(94,234,255,0.06); }
+  .map-dot{ position:absolute; width:11px; height:11px; border-radius:50%; }
+  .map-dot.you{ background:var(--cyan); box-shadow:0 0 14px var(--cyan); }
+  .map-dot.friend{ background:var(--emerald); box-shadow:0 0 14px var(--emerald); }
+  .map-dot.stranger{ background:var(--violet); box-shadow:0 0 14px var(--violet); }
+  .map-dot::after{
+    content:''; position:absolute; inset:-6px; border-radius:50%; border:1px solid currentColor; opacity:0.5;
+    animation:ring 2.4s ease-out infinite;
+  }
+  @keyframes ring{ 0%{ transform:scale(0.6); opacity:0.6;} 100%{ transform:scale(2.2); opacity:0;} }
+  .map-tooltip{
+    position:absolute; bottom:14px; left:14px; right:14px;
+    background:rgba(10,15,25,0.92); border:1px solid var(--border-glow); border-radius:10px;
+    padding:11px 14px; font-size:0.72rem; backdrop-filter:blur(10px);
+  }
+  .map-tooltip b{ color:var(--ice); font-size:0.78rem; }
+  .map-legend{ display:flex; gap:16px; margin-top:14px; flex-wrap:wrap; }
+  .map-legend span{ display:flex; align-items:center; gap:7px; font-size:0.74rem; color:var(--mist); }
+  .map-legend i{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+
+  .safety-note{
+    margin-top:22px; padding:16px 20px; border-radius:12px;
+    background:rgba(181,124,255,0.06); border:1px solid rgba(181,124,255,0.2);
+    font-size:0.86rem; color:var(--mist); line-height:1.65;
+  }
+  .safety-note b{ color:var(--violet); }
+
+  /* ---------------- roadmap ---------------- */
+  .roadmap{ position:relative; padding-left:32px; }
+  .roadmap::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:linear-gradient(var(--cyan), var(--violet), transparent); }
+  .rm-item{ position:relative; padding-bottom:52px; }
+  .rm-item:last-child{ padding-bottom:0; }
+  .rm-node{ position:absolute; left:-32px; top:4px; width:11px; height:11px; border-radius:50%; background:var(--cyan); box-shadow:0 0 12px var(--cyan); }
+  .rm-item:nth-child(2) .rm-node{ background:var(--indigo); box-shadow:0 0 12px var(--indigo); }
+  .rm-item:nth-child(3) .rm-node{ background:var(--violet); box-shadow:0 0 12px var(--violet); }
+  .rm-phase{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--mist-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; }
+  .rm-title{ font-size:1.3rem; font-weight:600; margin-bottom:10px; font-family:'Unbounded', sans-serif; }
+  .rm-desc{ color:var(--mist); font-size:0.96rem; line-height:1.7; max-width:600px; }
+
+  /* ---------------- split (investors) ---------------- */
+  .split{ display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+  @media(max-width:820px){ .split{ grid-template-columns:1fr; } }
+  .split > div{ padding:56px 48px; }
+  .split .left{ background:var(--panel); border-right:1px solid var(--border); }
+  .split .right{ background:var(--panel-hi); }
+  @media(max-width:820px){ .split .left{ border-right:none; border-bottom:1px solid var(--border); } }
+  .split h3{ font-size:1.4rem; font-weight:600; margin-bottom:16px; }
+  .split p{ color:var(--mist); font-size:0.98rem; line-height:1.75; margin-bottom:22px; }
+  .split ul{ list-style:none; }
+  .split li{ display:flex; gap:12px; color:var(--mist); font-size:0.92rem; margin-bottom:14px; line-height:1.6; }
+  .split li::before{ content:'—'; color:var(--cyan); flex-shrink:0; }
+
+  /* ---------------- final cta + footer ---------------- */
+  .final-cta{ text-align:center; padding:130px 0 100px; }
+  .final-cta h2{ font-size:clamp(2.2rem, 5vw, 3.6rem); font-weight:800; margin-bottom:24px; }
+  .final-cta p{ color:var(--mist); font-size:1.05rem; margin-bottom:40px; }
+
+  footer{ border-top:1px solid var(--border); padding:50px 0 40px; }
+  .foot-grid{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; }
+  .foot-left .logo{ margin-bottom:14px; }
+  .foot-left p{ color:var(--mist-dim); font-size:0.85rem; max-width:280px; line-height:1.6; }
+  .foot-links{ display:flex; gap:60px; flex-wrap:wrap; }
+  .foot-col .mono{ margin-bottom:16px; display:block; }
+  .foot-col a{ display:block; color:var(--mist); font-size:0.88rem; margin-bottom:10px; transition:color .2s; }
+  .foot-col a:hover{ color:var(--ice); }
+  .foot-bottom{ margin-top:60px; padding-top:24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; color:var(--mist-dim); font-size:0.78rem; flex-wrap:wrap; gap:10px; }
+
+  @media(max-width:600px){
+    section{ padding:100px 0; }
+    .split > div{ padding:40px 30px; }
+  }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header>
+  <nav>
+    <div class="logo"><span class="mark">M</span>METISOVA</div>
+    <div class="navlinks">
+      <a href="#origin">Origin</a>
+      <a href="#ethos">Ethos</a>
+      <a href="#divisions">Divisions</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#investors">Investors</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding-bottom:70px;">
+  <canvas id="constellation"></canvas>
+  <div class="hero-inner">
+    <div class="badge"><span class="dot"></span>The Invention &amp; Intelligence Company</div>
+    <h1>We don't predict the future.<br><span class="grad">We invent it.</span></h1>
+    <p class="sub">Metisova is a parent company built around one job: find the problems the world has learned to live with, invent original solutions, and commercialize them — across software, artificial intelligence, bioscience, and global presence.</p>
+    <div class="hero-ctas">
+      <a href="#divisions" class="btn-primary">Explore the divisions →</a>
+      <a href="#origin" class="btn-ghost">Where the name comes from</a>
+    </div>
+    <div class="metrics reveal">
+      <div class="metric"><div class="val">4</div><div class="lbl">Core Divisions</div></div>
+      <div class="metric"><div class="val">&lt;50ms</div><div class="lbl">Translator Latency Target</div></div>
+      <div class="metric"><div class="val">$20</div><div class="lbl">Genome Sequencing Target</div></div>
+      <div class="metric"><div class="val">Global</div><div class="lbl">Reach, By Design</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="mono" style="letter-spacing:.2em;">Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ============ ORIGIN ============ -->
+<section id="origin">
+  <div class="wrap">
+    <div class="origin-grid">
+      <div class="origin-copy reveal">
+        <span class="mono" style="display:block; margin-bottom:18px;">The Name</span>
+        <p class="drop">Named for the goddess who out-thought Zeus.</p>
+        <p>In Greek myth, <strong>Metis</strong> was the Titan of wisdom and cunning counsel — the mind the King of the Gods feared enough to swallow whole, rather than risk what she might create next.</p>
+        <p>We kept her name and gave it a modern accent: <strong>Metisova</strong>. It isn't a metaphor picked to dress up a logo — it's the operating model. Think first. Invent second. Build third, and never skip a step to move faster.</p>
+        <p>Metisova is the parent company. Everything beneath it — the labs, the models, the research — answers to that same discipline, whichever field the problem happens to live in.</p>
+      </div>
+      <div class="glyph-wrap reveal">
+        <svg viewBox="0 0 420 420" fill="none">
+          <circle cx="210" cy="210" r="160" stroke="var(--border-glow)" stroke-width="1"/>
+          <circle cx="210" cy="210" r="115" stroke="var(--border)" stroke-width="1"/>
+          <circle cx="210" cy="210" r="70" stroke="var(--border)" stroke-width="1"/>
+          <path d="M210 50 A160 160 0 0 1 349 130" stroke="var(--cyan)" stroke-width="2"/>
+          <path d="M349 290 A160 160 0 0 1 210 370" stroke="var(--indigo)" stroke-width="1.3" opacity="0.7"/>
+          <circle cx="210" cy="50" r="5" fill="var(--cyan)"/>
+          <circle cx="349" cy="130" r="4" fill="var(--indigo)"/>
+          <circle cx="349" cy="290" r="4" fill="var(--violet)"/>
+          <circle cx="210" cy="370" r="4" fill="var(--violet)"/>
+          <circle cx="71" cy="290" r="4" fill="var(--emerald)"/>
+          <circle cx="71" cy="130" r="4" fill="var(--gold)"/>
+          <text x="210" y="222" text-anchor="middle" font-family="Unbounded, sans-serif" font-size="36" font-weight="800" fill="#f3f8fc">M</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ============ ETHOS / PRINCIPLES ============ -->
+<section id="ethos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">The Metis Principle</span>
+      <h2>Three rules every division follows.</h2>
+      <p>Different fields, same discipline. Every division inside Metisova is held to the same three commitments before anything ships.</p>
+    </div>
+    <div class="ethos-grid reveal">
+      <div class="ethos-card">
+        <div class="ethos-icon">⚡</div>
+        <h3>Original invention first</h3>
+        <p>We don't clone existing tools or ship incremental features. Every product starts from first principles, aimed at a capability that didn't exist before.</p>
+      </div>
+      <div class="ethos-card">
+        <div class="ethos-icon">🌍</div>
+        <h3>Grounded in the real world</h3>
+        <p>Our work is anchored to real people, real places, and real outcomes — not abstractions. If it doesn't hold up outside a demo, it isn't finished.</p>
+      </div>
+      <div class="ethos-card">
+        <div class="ethos-icon">🧭</div>
+        <h3>Safety before scale</h3>
+        <p>Wherever a product touches real people's data, location, or trust, the safeguards are part of the first design — never a patch added after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ============ CYCLE ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">How We Work</span>
+      <h2>Not a funnel. A loop.</h2>
+      <p>Most companies pick a problem once. Metisova keeps cycling through the same three moves, in every field it enters, indefinitely.</p>
+    </div>
+    <div class="cycle-shell">
+      <svg class="orbit-svg reveal" viewBox="0 0 400 400" fill="none">
+        <circle cx="200" cy="200" r="150" stroke="var(--border-glow)" stroke-width="1" stroke-dasharray="2 6"/>
+        <circle cx="200" cy="50" r="7" fill="var(--cyan)"/>
+        <circle cx="330" cy="275" r="7" fill="var(--indigo)"/>
+        <circle cx="70" cy="275" r="7" fill="var(--violet)"/>
+        <path d="M200 57 A150 150 0 0 1 323 268" stroke="var(--cyan)" stroke-width="1.5" opacity="0.75"/>
+        <path d="M323 268 A150 150 0 0 1 77 268" stroke="var(--indigo)" stroke-width="1.5" opacity="0.55"/>
+        <path d="M77 268 A150 150 0 0 1 200 57" stroke="var(--violet)" stroke-width="1.5" opacity="0.55"/>
+        <text x="200" y="34" text-anchor="middle" fill="#f3f8fc" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1">IDENTIFY</text>
+        <text x="330" y="305" text-anchor="middle" fill="#93a4b8" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1">INVENT</text>
+        <text x="70" y="305" text-anchor="middle" fill="#93a4b8" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1">COMMERCIALIZE</text>
+      </svg>
+      <div class="cycle-list reveal">
+        <div class="cycle-item"><span class="dot" style="background:var(--cyan); box-shadow:0 0 10px 2px rgba(94,234,255,.5);"></span>
+          <div><h3>Identify</h3><p>We look for problems people have quietly learned to route around — treated as permanent facts of life rather than unsolved engineering questions.</p></div>
+        </div>
+        <div class="cycle-item"><span class="dot" style="background:var(--indigo);"></span>
+          <div><h3>Invent</h3><p>We build something original to solve it — not a repackaging of an existing tool, but a genuine invention, tested until it actually holds up.</p></div>
+        </div>
+        <div class="cycle-item"><span class="dot" style="background:var(--violet);"></span>
+          <div><h3>Commercialize</h3><p>We turn the invention into a product or service real people can use and real businesses can run — funding the next loop.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ============ DIVISIONS ============ -->
+<section id="divisions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">The Ecosystem</span>
+      <h2>One thesis, four fields.</h2>
+      <p>Metisova operates as a holding company. Each division carries the same discipline into a different domain.</p>
+    </div>
+
+    <!-- Labs -->
+    <div class="division-card reveal">
+      <div class="dc-copy">
+        <span class="tag labs">Metisova Labs</span><span class="status-pill">In R&D</span>
+        <h3>Real-time software & systems</h3>
+        <p class="desc">The engineering core of Metisova — where inventions from other divisions get built, hardened, and shipped as real software.</p>
+        <ul class="feat-list">
+          <li><span class="ico">✓</span><span><b>Voice-preserving live translator</b> — near-zero-latency translation for calls that keeps the speaker's own voice, tone, and emotion intact.</span></li>
+          <li><span class="ico">✓</span><span><b>Adaptive AI language tutor</b> — a highly interactive tutor that tracks progress and teaches like an experienced human would.</span></li>
+        </ul>
+      </div>
+      <div class="dc-show">
+        <div class="showcase">
+          <div class="showcase-head"><div class="win-dots"><span></span><span></span><span></span></div><div class="showcase-title">live-translate — session</div></div>
+          <div class="wave-row">
+            <span style="height:30%"></span><span style="height:60%"></span><span style="height:40%"></span><span style="height:80%"></span>
+            <span style="height:50%"></span><span style="height:90%"></span><span style="height:35%"></span><span style="height:65%"></span>
+            <span style="height:45%"></span><span style="height:75%"></span><span style="height:30%"></span><span style="height:55%"></span>
+            <span style="height:85%"></span><span style="height:40%"></span><span style="height:60%"></span><span style="height:25%"></span>
+          </div>
+          <div class="latency-readout">
+            source: Yoruba → target: English<br>
+            voice profile: <b>preserved</b><br>
+            round-trip latency: <b>target &lt;50ms</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI -->
+    <div class="division-card flip reveal">
+      <div class="dc-copy">
+        <span class="tag ai">Metisova AI</span><span class="status-pill">In R&D</span>
+        <h3>Frontier language intelligence</h3>
+        <p class="desc">AI models built for the languages and communities the rest of the industry treats as an afterthought.</p>
+        <ul class="feat-list">
+          <li><span class="ico">✓</span><span><b>Nigerian-language LLM</b> — a voice-first model built for Nigeria's languages and Pidgin, not retrofitted onto one.</span></li>
+          <li><span class="ico">✓</span><span><b>Geospatial intelligence layer</b> — the AI companion that powers Metisova Atlas's local recommendations.</span></li>
+        </ul>
+      </div>
+      <div class="dc-show">
+        <div class="showcase">
+          <div class="showcase-head"><div class="win-dots"><span></span><span></span><span></span></div><div class="showcase-title">metisova-ai — core</div></div>
+          <div class="term">
+            &gt; loading pidgin + multilingual weights<span class="line-mist">...</span><br>
+            &gt; voice input: <span class="line-mist">enabled</span><br>
+            &gt; code-switch detection: <span class="line-mist">active</span><br>
+            &gt; status: <span style="color:var(--emerald)">training</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bio -->
+    <div class="division-card reveal">
+      <div class="dc-copy">
+        <span class="tag bio">Metisova Bioscience</span><span class="status-pill">Research</span>
+        <h3>Genomics & personalized medicine</h3>
+        <p class="desc">Working to make personalized medicine a default, not a luxury — starting with the cost of reading a genome in the first place.</p>
+        <ul class="feat-list">
+          <li><span class="ico">✓</span><span><b>$20 sequencing target</b> — a radically cheaper method aimed at making full genome sequencing as ordinary as an email address.</span></li>
+          <li><span class="ico">✓</span><span><b>Universal genomic profiles</b> — the infrastructure for preventive, personalized care from birth.</span></li>
+        </ul>
+      </div>
+      <div class="dc-show">
+        <div class="showcase">
+          <div class="showcase-head"><div class="win-dots"><span></span><span></span><span></span></div><div class="showcase-title">sequencing — cost target</div></div>
+          <div class="bio-number">
+            <div class="big">$20</div>
+            <div class="cap">Target whole-genome cost</div>
+            <div class="bio-bar-track"><div class="bio-bar-fill"></div></div>
+            <div class="bio-caption"><span>$20 target</span><span>$1,000+ legacy cost</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atlas -->
+    <div class="division-card flip reveal">
+      <div class="dc-copy">
+        <span class="tag atlas">Metisova Atlas</span><span class="status-pill">Concept</span>
+        <h3>Global presence & exploration</h3>
+        <p class="desc">A way to put the real world into virtual form — explore it, connect with it, and do business across it, anywhere, anytime.</p>
+        <ul class="feat-list">
+          <li><span class="ico">✓</span><span><b>Live spatial map</b> — move through real coordinates and find real people actually present there, in real time.</span></li>
+          <li><span class="ico">✓</span><span><b>Spatial commerce & tourism</b> — shop at a real market or stand at a real landmark through the person who's actually there.</span></li>
+        </ul>
+        <div class="safety-note"><b>Built safety-first —</b> friends and strangers are always visually distinct on the map, every new connection is clearly flagged before it happens, and presence is opt-in by default.</div>
+      </div>
+      <div class="dc-show">
+        <div class="showcase">
+          <div class="showcase-head"><div class="win-dots"><span></span><span></span><span></span></div><div class="showcase-title">atlas — live map</div></div>
+          <div class="map-demo">
+            <div class="grid-h" style="top:33%; left:0; right:0; height:1px;"></div>
+            <div class="grid-h" style="top:66%; left:0; right:0; height:1px;"></div>
+            <div class="grid-v" style="left:33%; top:0; bottom:0; width:1px;"></div>
+            <div class="grid-v" style="left:66%; top:0; bottom:0; width:1px;"></div>
+            <div class="map-dot you" style="top:32%; left:22%;" title="You"></div>
+            <div class="map-dot friend" style="top:58%; left:68%;" title="Friend — Dugbe Market"></div>
+            <div class="map-dot stranger" style="top:20%; left:78%;" title="Stranger — flagged"></div>
+            <div class="map-tooltip"><b>Connection request</b> — flagged as a stranger, pending your review.</div>
+          </div>
+          <div class="map-legend">
+            <span><i style="background:var(--cyan)"></i>You</span>
+            <span><i style="background:var(--emerald)"></i>Friend</span>
+            <span><i style="background:var(--violet)"></i>Stranger</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<!-- ============ ROADMAP ============ -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">Strategic Roadmap</span>
+      <h2>From first invention to global scale.</h2>
+    </div>
+    <div class="roadmap reveal">
+      <div class="rm-item">
+        <div class="rm-node"></div>
+        <div class="rm-phase">Phase I — Foundation</div>
+        <div class="rm-title">Flagship prototypes & safety architecture</div>
+        <div class="rm-desc">Build working prototypes of the live translator and the Atlas MVP, with the friend/stranger safety model designed in from the first line of code — not added after launch.</div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-node"></div>
+        <div class="rm-phase">Phase II — Expansion</div>
+        <div class="rm-title">Regional launch & model release</div>
+        <div class="rm-desc">Launch the Nigerian-language LLM and the AI tutor, and take Atlas live in a small number of dense, well-understood markets before expanding further.</div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-node"></div>
+        <div class="rm-phase">Phase III — Scale</div>
+        <div class="rm-title">Bioscience commercialization & global reach</div>
+        <div class="rm-desc">Commercialize the low-cost sequencing method and extend the Metisova ecosystem toward the "genomic profile for everyone, everywhere" goal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INVESTORS / CUSTOMERS ============ -->
+<section id="investors">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">Who This Is For</span>
+      <h2>Built to be read two ways.</h2>
+    </div>
+    <div class="split reveal">
+      <div class="left">
+        <h3>For investors</h3>
+        <p>Metisova is structured as a holding company running multiple deep-tech bets under one operating discipline, rather than a single product bet.</p>
+        <ul>
+          <li>One thesis — identify, invent, commercialize — applied consistently across every division.</li>
+          <li>Diversified across software, applied AI, bioscience, and consumer platforms, reducing single-market risk.</li>
+          <li>Early-stage: divisions sit at R&D, research, and concept stages, sequenced deliberately rather than launched all at once.</li>
+        </ul>
+      </div>
+      <div class="right">
+        <h3>For future customers & partners</h3>
+        <p>Every Metisova product starts from the same question: what is the thing you currently work around, because no one has bothered to fix it properly?</p>
+        <ul>
+          <li>Language shouldn't be the reason a conversation, or a market opportunity, is closed to you.</li>
+          <li>A genomic profile shouldn't cost more than most people earn in a month.</li>
+          <li>Distance shouldn't be the only reason you never got to see a place, or meet the people in it.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta" id="contact">
+  <div class="wrap">
+    <h2 class="reveal">Let's build what doesn't<br/>exist yet.</h2>
+    <p class="reveal">Investor, engineer, partner, or just curious — we'd like to hear from you.</p>
+    <div class="hero-ctas reveal">
+      <a href="mailto:hello@metisova.com" class="btn-primary">hello@metisova.com</a>
+      <a href="#divisions" class="btn-ghost">Revisit the divisions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-left">
+        <div class="logo"><span class="mark">M</span>METISOVA</div>
+        <p>An intelligence company. We identify problems, invent original solutions, and commercialize them — across software, AI, bioscience, and global presence.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <span class="mono">Divisions</span>
+          <a href="#divisions">Metisova Labs</a>
+          <a href="#divisions">Metisova AI</a>
+          <a href="#divisions">Metisova Bioscience</a>
+          <a href="#divisions">Metisova Atlas</a>
+        </div>
+        <div class="foot-col">
+          <span class="mono">Company</span>
+          <a href="#origin">Origin of the name</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#investors">For investors</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Metisova. All rights reserved.</span>
+      <span>metisova.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const canvas = document.getElementById('constellation');
+  const ctx = canvas.getContext('2d');
+  let w, h, nodes = [];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize(){
+    w = canvas.width = canvas.offsetWidth * devicePixelRatio;
+    h = canvas.height = canvas.offsetHeight * devicePixelRatio;
+  }
+  function initNodes(){
+    const count = window.innerWidth < 700 ? 40 : 84;
+    nodes = Array.from({length: count}, () => ({
+      x: Math.random()*w, y: Math.random()*h,
+      vx: (Math.random()-0.5) * 0.15 * devicePixelRatio,
+      vy: (Math.random()-0.5) * 0.15 * devicePixelRatio,
+      r: Math.random()*1.6 + 0.6
+    }));
+  }
+  function frame(){
+    ctx.clearRect(0,0,w,h);
+    const maxDist = 150 * devicePixelRatio;
+    for(const n of nodes){
+      if(!reduceMotion){
+        n.x += n.vx; n.y += n.vy;
+        if(n.x < 0 || n.x > w) n.vx *= -1;
+        if(n.y < 0 || n.y > h) n.vy *= -1;
+      }
+    }
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i], b=nodes[j];
+        const dx=a.x-b.x, dy=a.y-b.y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<maxDist){
+          const op=(1-dist/maxDist)*0.5;
+          ctx.strokeStyle=`rgba(110,180,255,${op})`;
+          ctx.lineWidth=0.6*devicePixelRatio;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    for(const n of nodes){
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r*devicePixelRatio, 0, Math.PI*2);
+      ctx.fillStyle='rgba(225,240,255,0.85)';
+      ctx.fill();
+    }
+    if(!reduceMotion) requestAnimationFrame(frame);
+  }
+  function boot(){ resize(); initNodes(); frame(); }
+  window.addEventListener('resize', ()=>{ resize(); initNodes(); if(reduceMotion) frame(); });
+  boot();
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
