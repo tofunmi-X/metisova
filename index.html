@@ -100,15 +100,133 @@
         <div><p class="eyebrow">THE COMPANY</p><h2>Seven fronts of<br><span>invention.</span></h2></div>
         <p>Specialized divisions give Metisova the depth to attack difficult problems while the company remains unified by a single invention pipeline.</p>
       </div>
-      <div class="division-list">
-        <article class="division active" data-number="01" data-name="AI" data-image="ai"><div class="dnum">01</div><h3>Metisova AI</h3><p>Machine intelligence, multimodal systems, agents, reasoning, world models and human-AI interaction.</p><span>↗</span></article>
-        <article class="division" data-number="02" data-name="Medical" data-image="medical"> <a href="https://medical.metisova.com"><div class="dnum">02</div><h3>Metisova Medical</h3><p>Medical imaging, diagnostic AI, clinical decision support, precision medicine and healthcare infrastructure.</p><span>↗</span></a></article>
-        <article class="division" data-number="03" data-name="Biosciences" data-image="bio"><div class="dnum">03</div><h3>Metisova Biosciences</h3><p>Genomics, molecular biology, therapeutics, drug discovery, synthetic and computational biology.</p><span>↗</span></article>
-        <article class="division" data-number="04" data-name="Robotics" data-image="robotics"><div class="dnum">04</div><h3>Metisova Robotics</h3><p>Physical AI, general-purpose robots, medical and industrial robotics, autonomous systems and telepresence.</p><span>↗</span></article>
-        <article class="division" data-number="05" data-name="Education" data-image="education"><div class="dnum">05</div><h3>Metisova Education</h3><p>AI tutors, adaptive learning, language learning, simulation and AI-assisted teaching.</p><span>↗</span></article>
-        <article class="division" data-number="06" data-name="Labs" data-image="labs"><div class="dnum">06</div><h3>Metisova Labs</h3><p>The invention arm — fundamental questions, research, discovery, prototypes and new products.</p><span>↗</span></article>
-        <article class="division" data-number="07" data-name="Ventures" data-image="ventures"><div class="dnum">07</div><h3>Metisova Ventures</h3><p>Investment, incubation, spin-outs, acquisitions and company creation around breakthrough technologies.</p><span>↗</span></article>
-      </div>
+    <div class="division-list">
+  <a href="https://ai.metisova.com" class="division-link">
+    <article class="division active" data-number="01" data-name="AI" data-image="ai">
+      <div class="dnum">01</div>
+      <h3>Metisova AI</h3>
+      <p>Machine intelligence, multimodal systems, agents, reasoning, world models and human-AI interaction.</p>
+      <span>↗</span>
+    </article>
+  </a>
+
+  <a href="https://medical.metisova.com" class="division-link">
+    <article class="division" data-number="02" data-name="Medical" data-image="medical">
+      <div class="dnum">02</div>
+      <h3>Metisova Medical</h3>
+      <p>Medical imaging, diagnostic AI, clinical decision support, precision medicine and healthcare infrastructure.</p>
+      <span>↗</span>
+    </article>
+  </a>
+
+  <a href="https://biosciences.metisova.com" class="division-link">
+    <article class="division" data-number="03" data-name="Biosciences" data-image="bio">
+      <div class="dnum">03</div>
+      <h3>Metisova Biosciences</h3>
+      <p>Genomics, molecular biology, therapeutics, drug discovery, synthetic and computational biology.</p>
+      <span>↗</span>
+    </article>
+  </a>
+
+  <a href="https://robotics.metisova.com" class="division-link">
+    <article class="division" data-number="04" data-name="Robotics" data-image="robotics">
+      <div class="dnum">04</div>
+      <h3>Metisova Robotics</h3>
+      <p>Physical AI, general-purpose robots, medical and industrial robotics, autonomous systems and telepresence.</p>
+      <span>↗</span>
+    </article>
+  </a>
+
+  <a href="https://education.metisova.com" class="division-link">
+    <article class="division" data-number="05" data-name="Education" data-image="education">
+      <div class="dnum">05</div>
+      <h3>Metisova Education</h3>
+      <p>AI tutors, adaptive learning, language learning, simulation and AI-assisted teaching.</p>
+      <span>↗</span>
+    </article>
+  </a>
+
+  <a href="https://labs.metisova.com" class="division-link">
+    <article class="division" data-number="06" data-name="Labs" data-image="labs">
+      <div class="dnum">06</div>
+      <h3>Metisova Labs</h3>
+      <p>The invention arm — fundamental questions, research, discovery, prototypes and new products.</p>
+      <span>↗</span>
+    </article>
+  </a>
+
+  <a href="https://ventures.metisova.com" class="division-link">
+    <article class="division" data-number="07" data-name="Ventures" data-image="ventures">
+      <div class="dnum">07</div>
+      <h3>Metisova Ventures</h3>
+      <p>Investment, incubation, spin-outs, acquisitions and company creation around breakthrough technologies.</p>
+      <span>↗</span>
+    </article>
+  </a>
+</div>
+Ensure you neutralize default hyperlink styling in your CSS so the layout stays uniform:
+
+CSS
+.division-link {
+  text-decoration: none;
+  color: inherit;
+  display: contents; /* Allows .division to behave as direct child of .division-list */
+}
+Solution 2: Standardize <article> as the Base Container
+If only the arrow or the card body triggers a link via JavaScript or you only want standard card elements without wrapping links:
+
+HTML
+<div class="division-list">
+  <article class="division active" data-number="01" data-name="AI" data-image="ai">
+    <div class="dnum">01</div>
+    <h3>Metisova AI</h3>
+    <p>Machine intelligence, multimodal systems, agents, reasoning, world models and human-AI interaction.</p>
+    <span>↗</span>
+  </article>
+
+  <!-- 02 fixed to match the exact same DOM structure -->
+  <article class="division" data-number="02" data-name="Medical" data-image="medical" onclick="window.location.href='https://medical.metisova.com'">
+    <div class="dnum">02</div>
+    <h3>Metisova Medical</h3>
+    <p>Medical imaging, diagnostic AI, clinical decision support, precision medicine and healthcare infrastructure.</p>
+    <span>↗</span>
+  </article>
+
+  <article class="division" data-number="03" data-name="Biosciences" data-image="bio">
+    <div class="dnum">03</div>
+    <h3>Metisova Biosciences</h3>
+    <p>Genomics, molecular biology, therapeutics, drug discovery, synthetic and computational biology.</p>
+    <span>↗</span>
+  </article>
+
+  <article class="division" data-number="04" data-name="Robotics" data-image="robotics">
+    <div class="dnum">04</div>
+    <h3>Metisova Robotics</h3>
+    <p>Physical AI, general-purpose robots, medical and industrial robotics, autonomous systems and telepresence.</p>
+    <span>↗</span>
+  </article>
+
+  <article class="division" data-number="05" data-name="Education" data-image="education">
+    <div class="dnum">05</div>
+    <h3>Metisova Education</h3>
+    <p>AI tutors, adaptive learning, language learning, simulation and AI-assisted teaching.</p>
+    <span>↗</span>
+  </article>
+
+  <article class="division" data-number="06" data-name="Labs" data-image="labs">
+    <div class="dnum">06</div>
+    <h3>Metisova Labs</h3>
+    <p>The invention arm — fundamental questions, research, discovery, prototypes and new products.</p>
+    <span>↗</span>
+  </article>
+
+  <article class="division" data-number="07" data-name="Ventures" data-image="ventures">
+    <div class="dnum">07</div>
+    <h3>Metisova Ventures</h3>
+    <p>Investment, incubation, spin-outs, acquisitions and company creation around breakthrough technologies.</p>
+    <span>↗</span>
+  </article>
+</div>
     </section>
 
     <section class="products" id="products">
